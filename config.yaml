@@ -1,0 +1,21 @@
+appName: "Count Parquet Rows"
+spark:
+  master: "local[*]"  # Spark master URL (e.g., "local[*]" for local execution)
+  parquet_binary_as_string: "true"
+  execution_arrow_enabled: "false"
+  port_max_retries: "50"
+  enable_hive_support: true
+paths:
+  parquet_files: "PARQUET_FILES"  # Environment variable name for parquet files
+  output_file: "OUTPUT_FILE"  # Environment variable name for output file
+  resource_group_map_path: "/prod/01559/app/RIED/data/tde/ATOMDataFiles/Mapping/gim_mapping/resource_group"
+  interaction_purpose_map_path: "/prod/01559/app/RIED/data/tde/ATOMDataFiles/Mapping/gim_mapping/interaction_purpose"
+queries_file: "queries.sql"  # Path to the queries file
+hive:
+  table_name: "your_hive_table_name"  # Hive table name to insert data
+retry:
+  tries: 3  # Number of retry attempts
+  delay: 3  # Initial delay between retries in seconds
+  backoff: 2  # Backoff multiplier for exponential backoff
+logging:
+  level: "INFO"  # Logging level (e.g., "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL")
